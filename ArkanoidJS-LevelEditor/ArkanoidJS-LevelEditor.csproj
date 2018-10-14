@@ -57,7 +57,12 @@
     </ApplicationDefinition>
     <Compile Include="Constants\Globals.cs" />
     <Compile Include="ViewModels\BrickViewModel.cs" />
+    <Compile Include="ViewModels\EditBrickViewModel.cs" />
     <Compile Include="ViewModels\GameBoardViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\EditBrickPanel.xaml.cs">
+      <DependentUpon>EditBrickPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GameBoardControl.xaml.cs">
       <DependentUpon>GameBoardControl.xaml</DependentUpon>
     </Compile>
@@ -74,6 +79,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\EditBrickPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\GameBoardControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

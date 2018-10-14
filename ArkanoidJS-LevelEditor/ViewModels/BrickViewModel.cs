@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace ArkanoidJS_LevelEditor.ViewModels
 {
-    public class BrickViewModel : INotifyPropertyChanged
+    public class BrickViewModel : ViewModelBase
     {
         // Fields
         private readonly BrickModel brick;
@@ -38,13 +38,21 @@ namespace ArkanoidJS_LevelEditor.ViewModels
         public string Color
         {
             get { return brick.c; }
-            set { brick.c = value; }
+            set
+            {
+                brick.c = value;
+                OnPropertyChanged(nameof(Color));
+            }
         }
 
         public bool Broken
         {
             get { return brick.broken; }
-            set { brick.broken = value; }
+            set
+            {
+                brick.broken = value;
+                OnPropertyChanged(nameof(Broken));
+            }
         }
 
         public BrickType Type
@@ -57,13 +65,6 @@ namespace ArkanoidJS_LevelEditor.ViewModels
         public BrickViewModel(double left, double top)
         {
             brick = new BrickModel(left, top);
-        }
-
-        // INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

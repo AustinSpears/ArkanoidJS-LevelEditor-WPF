@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ArkanoidJS_LevelEditor.Views.EditBrickPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:ArkanoidJS_LevelEditor.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:EditBrickViewModel, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <CheckBox Content="Apply Color" IsChecked="{Binding ApplyColor}"/>
+            <StackPanel Grid.Row="1" Margin="10,0,0,0" IsEnabled="{Binding ApplyColor}">
+                <TextBlock Text="Todo color buttons"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

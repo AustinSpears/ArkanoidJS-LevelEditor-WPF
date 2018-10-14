@@ -3,14 +3,16 @@ using System.Collections.ObjectModel;
 
 namespace ArkanoidJS_LevelEditor.ViewModels
 {
-    public class GameBoardViewModel
+    public class GameBoardViewModel : ViewModelBase
     {
-        // Fields
+        // Properties
+        public EditBrickViewModel EditBrickVM { get; set; }
         public ObservableCollection<BrickViewModel> Bricks { get; set; }
 
         // Constructor
         public GameBoardViewModel()
         {
+            EditBrickVM = new EditBrickViewModel();
             Bricks = new ObservableCollection<BrickViewModel>();
 
             int cols = 10;
@@ -24,6 +26,13 @@ namespace ArkanoidJS_LevelEditor.ViewModels
                         j * Globals.BRICK_HEIGHT));
                 }
             }
+        }
+
+        // Methods
+        public void ApplySettingsToSelectedBrick(BrickViewModel selectedBrick)
+        {
+            // Toggle the broken status
+            selectedBrick.Broken = !selectedBrick.Broken;
         }
     }
 }
