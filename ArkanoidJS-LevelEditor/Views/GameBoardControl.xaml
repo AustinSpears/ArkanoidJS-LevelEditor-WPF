@@ -6,15 +6,14 @@
              xmlns:local="clr-namespace:ArkanoidJS_LevelEditor.Views"
              xmlns:vm="clr-namespace:ArkanoidJS_LevelEditor.ViewModels"
              mc:Ignorable="d"
-             d:DesignWidth="800" d:DesignHeight="600"
              d:DataContext="{d:DesignInstance Type=vm:GameBoardViewModel, IsDesignTimeCreatable=True}">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <local:EditBrickPanel DataContext="{Binding EditBrickVM}"/>
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding Bricks}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <local:EditBrickPanel Grid.Row="1" DataContext="{Binding EditBrickVM}"/>
+        <ItemsControl ItemsSource="{Binding Bricks}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas Width="800" Height="600"/>

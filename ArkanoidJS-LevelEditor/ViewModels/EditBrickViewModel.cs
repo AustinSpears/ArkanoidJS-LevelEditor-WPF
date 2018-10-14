@@ -1,4 +1,7 @@
-﻿namespace ArkanoidJS_LevelEditor.ViewModels
+﻿using System.Collections.Generic;
+using System.Reflection;
+
+namespace ArkanoidJS_LevelEditor.ViewModels
 {
     public class EditBrickViewModel : ViewModelBase
     {
@@ -11,6 +14,25 @@
             {
                 _applyColor = value;
                 OnPropertyChanged(nameof(ApplyColor));
+            }
+        }
+        public List<string> Colors { get; set; } = new List<string>();
+
+        // Constructor
+        public EditBrickViewModel()
+        {
+            InitColors();
+        }
+
+        // Methods
+        private void InitColors()
+        {
+            // Get all named colors
+            var cType = typeof(System.Windows.Media.Colors);
+            var cProperty = cType.GetProperties();
+            foreach (PropertyInfo prop in cProperty)
+            {
+                Colors.Add(prop.Name);
             }
         }
     }

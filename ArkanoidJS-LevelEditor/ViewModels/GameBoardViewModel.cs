@@ -6,15 +6,12 @@ namespace ArkanoidJS_LevelEditor.ViewModels
     public class GameBoardViewModel : ViewModelBase
     {
         // Properties
-        public EditBrickViewModel EditBrickVM { get; set; }
-        public ObservableCollection<BrickViewModel> Bricks { get; set; }
+        public EditBrickViewModel EditBrickVM { get; set; } = new EditBrickViewModel();
+        public ObservableCollection<BrickViewModel> Bricks { get; set; } = new ObservableCollection<BrickViewModel>();
 
         // Constructor
         public GameBoardViewModel()
         {
-            EditBrickVM = new EditBrickViewModel();
-            Bricks = new ObservableCollection<BrickViewModel>();
-
             int cols = 10;
             int rows = 30;
             for(int i = 0; i < cols; i++)
