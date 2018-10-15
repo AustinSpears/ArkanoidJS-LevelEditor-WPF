@@ -6,8 +6,19 @@
              xmlns:vm="clr-namespace:ArkanoidJS_LevelEditor.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:EditBrickViewModel, IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type CheckBox}">
+            <Style.Setters>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style.Setters>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -16,10 +27,15 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <CheckBox Content="Apply Color" IsChecked="{Binding ApplyColor}"/>
-            <ListBox Grid.Row="1" ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor}">
+            <ListBox Grid.Row="1"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     ItemsSource="{Binding Colors}" 
+                     SelectedItem="{Binding SelectedColor}"
+                     Margin="5">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Width="800"/>
+                        <WrapPanel Width="800" HorizontalAlignment="Left"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
@@ -27,12 +43,24 @@
                         <Rectangle x:Name="colorRect" Width="16" Height="16" Fill="{Binding}" Stroke="Black" />
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=IsSelected}" Value="true">
-                                <Setter TargetName="colorRect" Property="StrokeThickness" Value="3"/>
+                                <Setter TargetName="colorRect" Property="StrokeThickness" Value="2"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <CheckBox Content="Apply Type" IsChecked="{Binding ApplyType}"/>
+            <ComboBox Grid.Row="1" Width="100" Height="25"
+                      ItemsSource="{Binding BrickTypes}"
+                      SelectedItem="{Binding SelectedBrickType}"
+                      HorizontalAlignment="Left"
+                      Margin="10,5,5,10"/>
         </Grid>
     </Grid>
 </UserControl>

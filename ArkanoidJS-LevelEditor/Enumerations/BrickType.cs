@@ -2,8 +2,8 @@
 {
     public enum BrickType
     {
-        normal,
-        silver,
-        gold
+        Normal,
+        Silver,
+        Gold
     }
 }

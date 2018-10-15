@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using ArkanoidJS_LevelEditor.Enumerations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace ArkanoidJS_LevelEditor.ViewModels
@@ -6,7 +9,7 @@ namespace ArkanoidJS_LevelEditor.ViewModels
     public class EditBrickViewModel : ViewModelBase
     {
         // Properties
-        private bool _applyColor;
+        private bool _applyColor = true;
         public bool ApplyColor
         {
             get { return _applyColor; }
@@ -17,9 +20,39 @@ namespace ArkanoidJS_LevelEditor.ViewModels
             }
         }
 
+        private bool _applyType = true;
+        public bool ApplyType
+        {
+            get { return _applyType; }
+            set
+            {
+                _applyType = value;
+                OnPropertyChanged(nameof(ApplyType));
+            }
+        }
+
         public List<string> Colors { get; set; } = new List<string>();
 
         public string SelectedColor { get; set; } = "ForestGreen";
+
+        private BrickType _selectedBrickType;
+        public BrickType SelectedBrickType
+        {
+            get => _selectedBrickType;
+            set
+            {
+                _selectedBrickType = value;
+                OnPropertyChanged(nameof(SelectedBrickType));
+            }
+        }
+
+        public IEnumerable<BrickType> BrickTypes
+        {
+            get
+            {
+                return Enum.GetValues(typeof(BrickType)).Cast<BrickType>();
+            }
+        }
 
         // Constructor
         public EditBrickViewModel()

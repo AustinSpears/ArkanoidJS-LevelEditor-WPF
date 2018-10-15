@@ -50,6 +50,12 @@ namespace ArkanoidJS_LevelEditor.ViewModels
             {
                 selectedBrick.Broken = !selectedBrick.Broken;
             }
+
+            // Apply the type if necessary
+            if (EditBrickVM.ApplyType)
+            {
+                selectedBrick.Type = EditBrickVM.SelectedBrickType;
+            }
         }
     }
 }

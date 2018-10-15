@@ -13,7 +13,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <local:EditBrickPanel Grid.Row="1" DataContext="{Binding EditBrickVM}"/>
-        <ItemsControl ItemsSource="{Binding Bricks}">
+        <ItemsControl ItemsSource="{Binding Bricks}" Margin="5,6,5,0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas Width="800" Height="600"/>
@@ -27,11 +27,38 @@
             </ItemsControl.ItemContainerStyle>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Rectangle Width="{Binding Width}" Height="{Binding Height}" Stroke="White" MouseDown="Rectangle_MouseDown">
+                    <Rectangle Width="{Binding Width}" Height="{Binding Height}" Stroke="Gray" 
+                               MouseDown="Rectangle_MouseDown" MouseEnter="Rectangle_MouseEnter">
                         <Rectangle.Style>
                             <Style TargetType="{x:Type Rectangle}">
                                 <Setter Property="Fill" Value="{Binding Color}"/>
                                 <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedBrickType}" Value="Silver">
+                                        <Setter Property="Fill">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="Silver" Offset="0.0"/>
+                                                    <GradientStop Color="White" Offset="0.25"/>
+                                                    <GradientStop Color="Silver" Offset="0.5"/>
+                                                    <GradientStop Color="White" Offset="0.75"/>
+                                                    <GradientStop Color="Silver" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedBrickType}" Value="Gold">
+                                        <Setter Property="Fill">
+                                            <Setter.Value>
+                                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                    <GradientStop Color="Gold" Offset="0.0"/>
+                                                    <GradientStop Color="White" Offset="0.25"/>
+                                                    <GradientStop Color="Gold" Offset="0.5"/>
+                                                    <GradientStop Color="White" Offset="0.75"/>
+                                                    <GradientStop Color="Gold" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
                                     <DataTrigger Binding="{Binding Broken}" Value="true">
                                         <Setter Property="Fill" Value="Black"/>
                                     </DataTrigger>

@@ -1,5 +1,6 @@
 ﻿using ArkanoidJS_LevelEditor.Enumerations;
 using ArkanoidJS_LevelEditor.Models;
+using System;
 using System.ComponentModel;
 using System.Windows.Media;
 
@@ -58,7 +59,16 @@ namespace ArkanoidJS_LevelEditor.ViewModels
         public BrickType Type
         {
             get { return brick.brickType; }
-            set { brick.brickType = value; }
+            set
+            {
+                brick.brickType = value;
+                OnPropertyChanged(nameof(SelectedBrickType));
+            }
+        }
+
+        public string SelectedBrickType
+        {
+            get { return Enum.GetName(Type.GetType(), Type); }
         }
 
         // Constructor
