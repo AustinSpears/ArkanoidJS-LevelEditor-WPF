@@ -1,5 +1,5 @@
 ﻿using ArkanoidJS_LevelEditor.Constants;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace ArkanoidJS_LevelEditor.ViewModels
 {
@@ -7,7 +7,7 @@ namespace ArkanoidJS_LevelEditor.ViewModels
     {
         // Properties
         public EditBrickViewModel EditBrickVM { get; set; } = new EditBrickViewModel();
-        public ObservableCollection<BrickViewModel> Bricks { get; set; } = new ObservableCollection<BrickViewModel>();
+        public List<BrickViewModel> Bricks { get; set; } = new List<BrickViewModel>();
 
         // Constructor
         public GameBoardViewModel()
@@ -28,8 +28,28 @@ namespace ArkanoidJS_LevelEditor.ViewModels
         // Methods
         public void ApplySettingsToSelectedBrick(BrickViewModel selectedBrick)
         {
-            // Toggle the broken status
-            selectedBrick.Broken = !selectedBrick.Broken;
+            if (EditBrickVM.ApplyColor)
+            {
+                // If the colors match, then toggle broken like normal
+                if(selectedBrick.Color == EditBrickVM.SelectedColor)
+                {
+                    selectedBrick.Broken = !selectedBrick.Broken;
+                }
+                // If the colors don't match, then swap the color without breaking the brick
+                else
+                {
+                    selectedBrick.Color = EditBrickVM.SelectedColor;
+                    if(selectedBrick.Broken)
+                    {
+                        selectedBrick.Broken = false;
+                    }
+                }
+            }
+            // Default behavior is simply to toggle the broken status
+            else
+            {
+                selectedBrick.Broken = !selectedBrick.Broken;
+            }
         }
     }
 }

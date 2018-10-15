@@ -16,7 +16,10 @@ namespace ArkanoidJS_LevelEditor.ViewModels
                 OnPropertyChanged(nameof(ApplyColor));
             }
         }
+
         public List<string> Colors { get; set; } = new List<string>();
+
+        public string SelectedColor { get; set; } = "ForestGreen";
 
         // Constructor
         public EditBrickViewModel()

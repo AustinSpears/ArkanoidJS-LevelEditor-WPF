@@ -16,7 +16,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <CheckBox Content="Apply Color" IsChecked="{Binding ApplyColor}"/>
-            <ListBox Grid.Row="1" Margin="0,0,0,0" IsEnabled="{Binding ApplyColor}" ItemsSource="{Binding Colors}">
+            <ListBox Grid.Row="1" ItemsSource="{Binding Colors}" SelectedItem="{Binding SelectedColor}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Width="800"/>
