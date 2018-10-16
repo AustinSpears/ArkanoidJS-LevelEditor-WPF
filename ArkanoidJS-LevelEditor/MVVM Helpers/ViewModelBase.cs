@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ArkanoidJS_LevelEditor.ViewModels
+namespace ArkanoidJS_LevelEditor.MVVM_Helpers
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

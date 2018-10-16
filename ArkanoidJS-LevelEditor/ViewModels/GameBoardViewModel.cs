@@ -1,5 +1,12 @@
 ﻿using ArkanoidJS_LevelEditor.Constants;
+using ArkanoidJS_LevelEditor.MVVM_Helpers;
+using Newtonsoft.Json;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using ArkanoidJS_LevelEditor.Models;
+using System.Linq;
 
 namespace ArkanoidJS_LevelEditor.ViewModels
 {
@@ -8,6 +15,20 @@ namespace ArkanoidJS_LevelEditor.ViewModels
         // Properties
         public EditBrickViewModel EditBrickVM { get; set; } = new EditBrickViewModel();
         public List<BrickViewModel> Bricks { get; set; } = new List<BrickViewModel>();
+
+        private RelayCommand _exportcommand;
+        public RelayCommand ExportCommand
+        {
+            get
+            {
+                if(_exportcommand == null)
+                {
+                    _exportcommand = new RelayCommand(ExportToJsonFile);
+                }
+
+                return _exportcommand;
+            }
+        }
 
         // Constructor
         public GameBoardViewModel()
@@ -26,6 +47,25 @@ namespace ArkanoidJS_LevelEditor.ViewModels
         }
 
         // Methods
+        private void ExportToJsonFile(object parameter)
+        {
+            // Open file save dialog
+            var saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Json File|*.json";
+            saveDialog.Title = "Save a Json File";
+            saveDialog.ShowDialog();
+
+            // Bail out if the user cancelled the save file dialog
+            if(string.IsNullOrWhiteSpace(saveDialog.FileName)) { return; }
+
+            using (StreamWriter sw = new StreamWriter(saveDialog.OpenFile()))
+            {
+                List<BrickModel> brickModels = Bricks.Select(bvm => bvm.Brick).ToList();
+                string jsonBrickList = JsonConvert.SerializeObject(brickModels);
+                sw.WriteLine(jsonBrickList);
+            }
+        }
+
         public void ApplySettingsToSelectedBrick(BrickViewModel selectedBrick)
         {
             if (EditBrickVM.ApplyColor)

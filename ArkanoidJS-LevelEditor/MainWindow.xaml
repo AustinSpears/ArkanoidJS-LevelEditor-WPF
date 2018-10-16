@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ArkanoidJS_LevelEditor.Views"
         mc:Ignorable="d"
         Title="ArkanoidJS Level Editor" 
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize">
     <Grid Background="{StaticResource ApplicationBackground}">
         <local:GameBoardControl/>
     </Grid>

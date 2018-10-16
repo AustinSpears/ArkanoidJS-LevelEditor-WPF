@@ -1,67 +1,65 @@
 ﻿using ArkanoidJS_LevelEditor.Enumerations;
 using ArkanoidJS_LevelEditor.Models;
+using ArkanoidJS_LevelEditor.MVVM_Helpers;
 using System;
-using System.ComponentModel;
-using System.Windows.Media;
 
 namespace ArkanoidJS_LevelEditor.ViewModels
 {
     public class BrickViewModel : ViewModelBase
     {
-        // Fields
-        private readonly BrickModel brick;
-
         // Properties
+        public BrickModel Brick { get; private set; }
+
         public double Left
         {
-            get { return brick.x; }
-            set { brick.x = value; }
+            get { return Brick.x; }
+            set { Brick.x = value; }
         }
 
         public double Top
         {
-            get { return brick.y; }
-            set { brick.y = value; }
+            get { return Brick.y; }
+            set { Brick.y = value; }
         }
 
         public int Width
         {
-            get { return brick.w; }
-            set { brick.w = value; }
+            get { return Brick.w; }
+            set { Brick.w = value; }
         }
 
         public int Height
         {
-            get { return brick.h; }
-            set { brick.h = value; }
+            get { return Brick.h; }
+            set { Brick.h = value; }
         }
 
         public string Color
         {
-            get { return brick.c; }
+            get { return Brick.c; }
             set
             {
-                brick.c = value;
+                Brick.c = value;
                 OnPropertyChanged(nameof(Color));
             }
         }
 
         public bool Broken
         {
-            get { return brick.broken; }
+            get { return Brick.broken; }
             set
             {
-                brick.broken = value;
+                Brick.broken = value;
                 OnPropertyChanged(nameof(Broken));
             }
         }
 
         public BrickType Type
         {
-            get { return brick.brickType; }
+            get { return Brick.brickType; }
             set
             {
-                brick.brickType = value;
+                Brick.brickType = value;
                 OnPropertyChanged(nameof(SelectedBrickType));
             }
         }
@@ -74,7 +72,7 @@ namespace ArkanoidJS_LevelEditor.ViewModels
         // Constructor
         public BrickViewModel(double left, double top)
         {
-            brick = new BrickModel(left, top);
+            Brick = new BrickModel(left, top);
         }
     }
 }
